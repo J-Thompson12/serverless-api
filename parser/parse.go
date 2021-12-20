@@ -1,4 +1,4 @@
-package main
+package parser
 
 import "strings"
 
@@ -9,7 +9,7 @@ type IPData struct {
 	Email     string `json:"Email"`
 }
 
-func createMapData(data string) map[string]string {
+func CreateMapData(data string) map[string]string {
 	result := make(map[string]string)
 	lines := strings.Split(data, "\n")
 	for _, line := range lines {
@@ -24,7 +24,7 @@ func createMapData(data string) map[string]string {
 	return result
 }
 
-func buildIPData(data map[string]string) IPData {
+func BuildIPData(data map[string]string) IPData {
 	if isDomain(data) {
 		return IPData{
 			Name:      data["Domain Name"],

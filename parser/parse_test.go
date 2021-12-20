@@ -1,4 +1,4 @@
-package main
+package parser
 
 import (
 	"testing"
@@ -21,7 +21,7 @@ func TestCreateMapData(t *testing.T) {
 	# Copyright 1997-2021, American Registry for Internet Numbers, Ltd.
 	#`
 
-	result := createMapData(testData)
+	result := CreateMapData(testData)
 	require.Equal(t, 2, len(result))
 
 }
@@ -38,7 +38,7 @@ func TestBuildIP(t *testing.T) {
 		{orgMap, IPData{Name: "test org", City: "San Diego", StateProv: "", Email: ""}},
 	}
 	for _, c := range cases {
-		result := buildIPData(c.input)
+		result := BuildIPData(c.input)
 		require.Equal(t, c.expected, result)
 	}
 

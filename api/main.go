@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/justin/serverless-api/parser"
 	"github.com/likexian/whois"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -24,8 +25,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		return events.APIGatewayProxyResponse{Body: fmt.Sprintf("unable to get ip info: %s", err), StatusCode: http.StatusBadRequest}, nil
 	}
 
-	mapData := createMapData(result)
-	obj := buildIPData(mapData)
+	mapData := parser.CreateMapData(result)
+	obj := parser.BuildIPData(mapData)
 	returnData, err := json.Marshal(obj)
 	if err != nil {
 		return events.APIGatewayProxyResponse{Body: fmt.Sprintf("failed to parse ip info: %s", err), StatusCode: http.StatusNotAcceptable}, nil
